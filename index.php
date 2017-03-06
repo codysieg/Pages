@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Welcome to Pages!</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -54,14 +54,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand">
+            <?php
+            echo "Welcome, ".$_SESSION['username']."!";
+            ?>
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">My Collection</a></li>
+        <li><a href="#">Templates</a></li>
+        <li><a href="login.php">Log Out</a></li>
       </ul>
     </div>
   </div>
@@ -71,19 +74,37 @@
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <!--Search area for books. Will connect to DB-->
-      <form action = "processBookSearch.php" method="POST" id="mainForm"/>
-      <input type="text" name ="firstAtt" placeholder="First Attribute"/>
-      <input type="text" name ="secondAtt" placeholder="Second Attribute"/>
+
+    </div>
+    <div class="col-sm-8 text-left">
+      <hr>
+      <!-- This will display SQL results from DB -->
+      <p class="form-title">
+          <h3 style = "color:white;">Add a New Book:</h3> </p>
+      <form action = "addBookToDatabase.php" method="POST" id="mainForm"/>
+      <input type="text" name ="ISBN" placeholder="ISBN : "/>
+      <input type="text" name ="title" placeholder="Title of Book : "/>
+      <input type="text" name ="author" placeholder="Author : "/>
+      <input type="text" name ="publisher" placeholder="Publisher : "/>
+      <input type="text" name ="pdate" placeholder="Publisher Date : "/>
+      <input type="text" name ="genre" placeholder="Genre : "/>
+      <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
+      </form>
+
+      <hr>
+      <p class="form-title">
+          <h3 style = "color:white;">Search for Books:</h3> </p>
+      <form action = "searchBookDatabase.php" method="POST" id="mainForm"/>
+      <input type="text" name ="ISBN" placeholder="ISBN : "/>
+      <input type="text" name ="title" placeholder="Title of Book : "/>
+      <input type="text" name ="author" placeholder="Author : "/>
+      <input type="text" name ="publisher" placeholder="Publisher : "/>
+      <input type="text" name ="pdate" placeholder="Publisher Date : "/>
+      <input type="text" name ="genre" placeholder="Genre : "/>
       <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
       </form>
     </div>
-    <div class="col-sm-8 text-left">
-      <?php
-      echo "<h1>Welcome, ".$_SESSION['username']."!</h1>";
-      ?>
-      <hr>
-      <!-- This will display SQL results from DB -->
-    </div>
+
   </div>
 </div>
 </body>
