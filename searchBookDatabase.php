@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head></head>
@@ -21,23 +25,10 @@
             include 'databaseConnection.php';
             $sql = "SELECT * FROM books WHERE ISBN = $ISBN;";
             $retval = mysqli_query($connection, $sql);
-            if($retval){
-              while($row = mysqli_fetch_assoc($retval)){
-                echo "<p>";
-                echo $row['ISBN']." ";
-                echo $row['title']." ";
-                echo $row['author']." ";
-                echo $row['publisher']." ";
-                echo $row['pdate']." ";
-                echo $row['genre']." ";
-                echo "</p>";
-                echo "<br/>";
-              }
-
-            } else{
-              echo "Nothing found";
-              //header('Location: index.php');
-            }
+            $_SESSION['retvalue'] = $retval;
+            $row = mysqli_fetch_assoc($retval);
+            $_SESSION['row'] = $row;
+            header('Location: index.php');
         }
       }
   }
