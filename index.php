@@ -13,6 +13,27 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/index.css">
   <style>
+    .logoutButton{
+      float: right !important;
+    }
+    .bookList a{
+      float: left;
+      height: 100%;
+    }
+    .bookList{
+    background-color: white !important;
+    font-style: italic !important;
+    color: black !important;
+    height: 35px;
+
+    }
+    .container{
+      color: white;
+    }
+
+    .table-responsive{
+      color: white;
+    }
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;
@@ -62,9 +83,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">My Collection</a></li>
+        <li><a href="collections.php">My Collection</a></li>
         <li><a href="#">Templates</a></li>
-        <li><a href="login.php">Log Out</a></li>
+        <li><a class = "logoutButton" href="login.php">Log Out</a></li>
       </ul>
     </div>
   </div>
@@ -103,6 +124,54 @@
       <input type="text" name ="genre" placeholder="Genre : "/>
       <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
       </form>
+
+      <div class = "container">
+        <h2>Returned Books</h2>
+        <?php
+        echo "<div class = 'table-responsive'>";
+        echo "<table class = 'table'>";
+        echo "<thead>";
+        echo "<tr>";
+        echo "<th>ISBN</th>";
+        echo "<th>Title</th>";
+        echo "<th>Author</th>";
+        echo "<th>Publisher</th>";
+        echo "<th>Publish Date</th>";
+        echo "<th>Genre</th>";
+        echo "<th>Collections</th>";
+        echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
+        $retval = $_SESSION['retvalue'];
+        $row = $_SESSION['row'];
+        if($row){
+            echo "<tr>";
+            echo "<td>".$row['ISBN']."</td>";
+            echo "<td>".$row['title']."</td>";
+            echo "<td>".$row['author']."</td>";
+            echo "<td>".$row['publisher']."</td>";
+            echo "<td>".$row['pdate']."</td>";
+            echo "<td>".$row['genre']."</td>";
+            echo "<td><form action = 'addToCart.php' method ='post'>";
+            echo "<input class='btn btn-success' type = 'submit' value='Add'>";
+            $_SESSION['bookToAdd'] = $row;
+            echo "</form></td>";
+            echo "</tr>";
+          } else{
+            echo "<tr>";
+            echo "<td>Nothing found.</td>";
+            echo "<td>".$row['title']."</td>";
+            echo "<td>".$row['author']."</td>";
+            echo "<td>".$row['publisher']."</td>";
+            echo "<td>".$row['pdate']."</td>";
+            echo "<td>".$row['genre']."</td>";
+            echo "</tr>";
+          }
+        echo "</tbody>";
+        echo "</table>";
+        echo "</div>";
+          ?>
+        </div>
     </div>
 
   </div>
