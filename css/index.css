@@ -1,0 +1,27 @@
+body
+{
+    background: url('http://wallpapercave.com/wp/ijo8KeK.jpg');
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.col-sm-8 text-left, h1{
+  text-align: center;
+  color: white;
+}
+
+.nav navbar-nav:last-child{
+  float: right;
+}
+
+.col-sm-8 text-left .form-title{
+  background-color: white;
+  font-size: 15px;
+}
+
+.bookList{
+  background-color: white !important;
+  font-style: italic !important;
+  color: white !important;
+}

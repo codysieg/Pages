@@ -99,6 +99,7 @@
     </div>
     <div class="col-sm-8 text-left">
       <hr>
+      <div class="wrap">
       <!-- This will display SQL results from DB -->
       <p class="form-title">
           <h3 style = "color:white;">Add a New Book:</h3> </p>
@@ -111,7 +112,6 @@
       <input type="text" name ="genre" placeholder="Genre : "/>
       <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
       </form>
-
       <hr>
       <p class="form-title">
           <h3 style = "color:white;">Search for Books:</h3> </p>
