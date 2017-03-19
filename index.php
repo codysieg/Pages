@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/sorttable.js" type = "text/javascript"></script>
   <link rel="stylesheet" href="css/index.css">
   <style>
 
@@ -85,7 +86,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="collections.php">My Collection</a></li>
-        <li><a href="#">Templates</a></li>
+        <li><a href="templates.php">Templates</a></li>
         <li><a class = "logoutButton" href="login.php">Log Out</a></li>
       </ul>
     </div>
@@ -130,11 +131,14 @@
       <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
       </form>
 
-      <div class = "container">
-        <h2>Returned Books</h2>
+      <div class = "container centered">
+        <h2>Returned Books: </h2>
         <?php
+        $sql = $_SESSION['sql'];
+        //uncomment to see sql query being run
+        //echo "<p>".$sql."</p>";
         echo "<div class = 'table-responsive'>";
-        echo "<table class = 'table'>";
+        echo "<table class = 'table sortable'>";
         echo "<thead>";
         echo "<tr>";
         echo "<th>ISBN</th>";
@@ -149,7 +153,6 @@
         echo "</thead>";
         echo "<tbody>";
         include 'databaseConnection.php';
-        $sql = $_SESSION['sql'];
         $result = mysqli_query($connection, $sql);
         while($row = mysqli_fetch_assoc($result)){
           echo "<tr>";

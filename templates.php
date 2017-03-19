@@ -30,6 +30,17 @@
     right: -43%;
     width: 15%;
   }
+
+  #close{
+    position: relative;
+    right: -43%;
+    width: 15%;
+  }
+
+  #myModal{
+    color: black;
+  }
+
   </style>
 </head>
 <body>
@@ -64,15 +75,71 @@
       <div class="form-group">
         <label for="sel1">Select which template you wish to use: </label>
         <select class="form-control" id="sel1" name = "website_string">
-          <option value = "mla">MLA Citation Style</option>
-          <option value = "apa">APA Citation Style</option>
-          <option value = "chic">Chicago/Turabian Style</option>
+          <option value = "MLA">MLA Citation Style</option>
+          <option value = "APA">APA Citation Style</option>
+          <option value = "Chicago/Turabian">Chicago/Turabian Style</option>
         </select>
       </div>
       <input type="submit" value="Submit" name ="submit" class="btn btn-success btn-sm" id="close"/>
     </form>
+
+    <p></p>
+
+    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" id ="close" data-target="#myModal">Create Template...</button>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Create a new template: </h4>
+        </div>
+        <div class="modal-body">
+          <!--Insert form that will be used to create a new template. -->
+          <!--Will only satisfy the 8 attributes currently in Books. (ISBN, title, authorFirst, authorLast, pcity, publisher, pdate, genre)-->
+          <form method = "post" action = "createTemplate.php">
+          <label>Enter the attributes you want to have...</label><br/>
+          <div class="form-group">
+            <input type="text" name ="firstAtt" class = "form-control" placeholder="First Attribute: "/>
+          </div>
+          <div class="form-group">
+            <input type="text" name ="secondAtt" class = "form-control" placeholder="Second Attribute: "/>
+          </div>
+          <div class="form-group">
+            <input type="text" name ="thirdAtt" class = "form-control" placeholder="Third Attribute: "/>
+          </div>
+          <div class="form-group">
+            <input type="text" name ="fourthAtt" class = "form-control" placeholder="Fourth Attribute: "/>
+          </div>
+          <div class="form-group">
+            <input type="text" name ="fifthAtt" class = "form-control"  placeholder="Fifth Attribute: "/>
+          </div>
+          <div class="form-group">
+            <input type="text" name ="sixthAtt" class = "form-control" placeholder="Sixth Attribute: "/>
+          </div>
+          <div class="form-group">
+            <input type="text" name ="seventhAtt" class = "form-control" placeholder="Seventh Attribute: "/>
+          </div>
+          <div class="form-group">
+            <input type="text" name ="eigthAtt" class = "form-control" placeholder="Eigth Attribute: "/>
+          </div>
+          <div>
+            <input type="submit" value="Submit" class="btn btn-info btn-sm"/>
+          </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+      </div>
+    </div>
     <hr>
-    <h2 align="center">Bibliography</h2>
+    <h2 align="center"><?php echo $_SESSION['template_name'] ?> Bibliography</h2>
     <?php
     //get session variable w/ template in it
       $return_template = $_SESSION['return_template'];
