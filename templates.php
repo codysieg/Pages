@@ -75,16 +75,16 @@
       <div class="form-group">
         <label for="sel1">Select which template you wish to use: </label>
         <select class="form-control" id="sel1" name = "website_string">
-          <option value = "mla">MLA Citation Style</option>
-          <option value = "apa">APA Citation Style</option>
-          <option value = "chic">Chicago/Turabian Style</option>
+          <option value = "MLA">MLA Citation Style</option>
+          <option value = "APA">APA Citation Style</option>
+          <option value = "Chicago/Turabian">Chicago/Turabian Style</option>
         </select>
       </div>
       <input type="submit" value="Submit" name ="submit" class="btn btn-success btn-sm" id="close"/>
     </form>
 
     <p></p>
-    
+
     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" id ="close" data-target="#myModal">Create Template...</button>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -139,7 +139,7 @@
       </div>
     </div>
     <hr>
-    <h2 align="center">Bibliography</h2>
+    <h2 align="center"><?php echo $_SESSION['template_name'] ?> Bibliography</h2>
     <?php
     //get session variable w/ template in it
       $return_template = $_SESSION['return_template'];
