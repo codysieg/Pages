@@ -30,7 +30,6 @@
       }
 
     }
-
     // now return the template selected and print it out.
     //save as a session variable
     $_SESSION['return_template'] = $returnTemplate;
