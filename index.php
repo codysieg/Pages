@@ -11,8 +11,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/sorttable.js" type = "text/javascript"></script>
   <link rel="stylesheet" href="css/index.css">
   <style>
+
     .logoutButton{
       float: right !important;
     }
@@ -84,7 +86,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="collections.php">My Collection</a></li>
-        <li><a href="#">Templates</a></li>
+        <li><a href="templates.php">Templates</a></li>
         <li><a class = "logoutButton" href="login.php">Log Out</a></li>
       </ul>
     </div>
@@ -99,42 +101,50 @@
     </div>
     <div class="col-sm-8 text-left">
       <hr>
+      <div class="wrap">
       <!-- This will display SQL results from DB -->
       <p class="form-title">
           <h3 style = "color:white;">Add a New Book:</h3> </p>
       <form action = "addBookToDatabase.php" method="POST" id="mainForm"/>
       <input type="text" name ="ISBN" placeholder="ISBN : "/>
       <input type="text" name ="title" placeholder="Title of Book : "/>
-      <input type="text" name ="author" placeholder="Author : "/>
+      <input type="text" name ="authorFirst" placeholder="Author (First) : "/>
+      <input type="text" name ="authorLast" placeholder="Author (Last) : "/>
+      <input type="text" name ="pcity" placeholder="Publishing City : "/>
       <input type="text" name ="publisher" placeholder="Publisher : "/>
       <input type="text" name ="pdate" placeholder="Publisher Date : "/>
       <input type="text" name ="genre" placeholder="Genre : "/>
       <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
       </form>
-
       <hr>
       <p class="form-title">
           <h3 style = "color:white;">Search for Books:</h3> </p>
       <form action = "searchBookDatabase.php" method="POST" id="mainForm"/>
       <input type="text" name ="ISBN" placeholder="ISBN : "/>
       <input type="text" name ="title" placeholder="Title of Book : "/>
-      <input type="text" name ="author" placeholder="Author : "/>
+      <input type="text" name ="authorFirst" placeholder="Author (First) : "/>
+      <input type="text" name ="authorLast" placeholder="Author (Last) : "/>
+      <input type="text" name ="pcity" placeholder="Publishing City : "/>
       <input type="text" name ="publisher" placeholder="Publisher : "/>
       <input type="text" name ="pdate" placeholder="Publisher Date : "/>
       <input type="text" name ="genre" placeholder="Genre : "/>
       <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
       </form>
 
-      <div class = "container">
-        <h2>Returned Books</h2>
+      <div class = "container centered">
+        <h2>Returned Books: </h2>
         <?php
+        $sql = $_SESSION['sql'];
+        //uncomment to see sql query being run
+        //echo "<p>".$sql."</p>";
         echo "<div class = 'table-responsive'>";
-        echo "<table class = 'table'>";
+        echo "<table class = 'table sortable'>";
         echo "<thead>";
         echo "<tr>";
         echo "<th>ISBN</th>";
         echo "<th>Title</th>";
-        echo "<th>Author</th>";
+        echo "<th>Author Last, First</th>";
+        echo "<th>Publishing City</th>";
         echo "<th>Publisher</th>";
         echo "<th>Publish Date</th>";
         echo "<th>Genre</th>";
@@ -142,31 +152,26 @@
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
-        $retval = $_SESSION['retvalue'];
-        $row = $_SESSION['row'];
-        if($row){
-            echo "<tr>";
-            echo "<td>".$row['ISBN']."</td>";
-            echo "<td>".$row['title']."</td>";
-            echo "<td>".$row['author']."</td>";
-            echo "<td>".$row['publisher']."</td>";
-            echo "<td>".$row['pdate']."</td>";
-            echo "<td>".$row['genre']."</td>";
-            echo "<td><form action = 'addToCart.php' method ='post'>";
-            echo "<input class='btn btn-success' type = 'submit' value='Add'>";
-            $_SESSION['bookToAdd'] = $row;
-            echo "</form></td>";
-            echo "</tr>";
-          } else{
-            echo "<tr>";
-            echo "<td>Nothing found.</td>";
-            echo "<td>".$row['title']."</td>";
-            echo "<td>".$row['author']."</td>";
-            echo "<td>".$row['publisher']."</td>";
-            echo "<td>".$row['pdate']."</td>";
-            echo "<td>".$row['genre']."</td>";
-            echo "</tr>";
-          }
+        include 'databaseConnection.php';
+        $result = mysqli_query($connection, $sql);
+        while($row = mysqli_fetch_assoc($result)){
+          echo "<tr>";
+          echo "<td>".$row['ISBN']."</td>";
+          echo "<td>".$row['title']."</td>";
+          echo "<td>".$row['authorLast'].", ".$row['authorFirst']."</td>";
+          echo "<td>".$row['pcity']."</td>";
+          echo "<td>".$row['publisher']."</td>";
+          echo "<td>".$row['pdate']."</td>";
+          echo "<td>".$row['genre']."</td>";
+          $ISBN = $row['ISBN'];
+          echo "<td>";
+          echo "<form action = 'addToCart.php' method = 'post'>";
+          echo "<input type ='hidden' name='ISBN' value='$ISBN'>";
+          echo "<input type='submit' value ='Add' class='btn btn-success'>";
+          echo "</form>";
+          echo "</td>";
+          echo "</tr>";
+        }
         echo "</tbody>";
         echo "</table>";
         echo "</div>";

@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Login Page</title>
+  <title>Login to Pages</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,6 +14,7 @@ session_start();
   <script type="text/javascript" src="js/login.js"></script>
   <link rel="stylesheet" href="css/login.css">
   <style>
+
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;
@@ -65,9 +66,9 @@ session_start();
                   <form action = "verification.php" class="login" method="POST" id="mainForm"/>
                   <input type="text" name ="uname" placeholder="Username" class = "required"/>
                   <input type="password" name ="pass" placeholder="Password" class = "required"/>
-                  <input type="submit" value="Sign In" class="btn btn-success btn-sm"/>
+                  <input type="submit" value="Sign In" class="btn btn-success btn-sm"/> <p></p>
                   <a href = "register.php">
-                    <input type="button" value="Not a user? Register now." class="btn btn-success btn-sm"/>
+                    <input type="button" value="Not a user? Register now." class="btn btn-success btn-block"/>
                   </a>
                   <div class="remember-forgot">
                       <div class="row">

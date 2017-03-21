@@ -1,0 +1,48 @@
+body
+{
+    background: url('http://wallpapercave.com/wp/ijo8KeK.jpg');
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.col-sm-8 text-left, h1{
+  text-align: center;
+  color: white;
+}
+
+table.sortable thead {
+    background-color:#eee;
+    opacity: 0.8;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
+
+table.sortable tbody {
+    background-color:#eee;
+    opacity: 0.8;
+    color:#666666;
+}
+
+/*not sure how this will look on different monitors... doing this to accomodate the sidenav bar in index.php line 98*/
+div.centered{
+  position: absolute;
+  width: 150%;
+  left: -25%;
+}
+
+.nav navbar-nav:last-child{
+  float: right;
+}
+
+.col-sm-8 text-left .form-title{
+  background-color: white;
+  font-size: 15px;
+}
+
+.bookList{
+  background-color: white !important;
+  font-style: italic !important;
+  color: white !important;
+}
