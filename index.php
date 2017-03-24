@@ -69,6 +69,15 @@
   </style>
 </head>
 <body>
+
+<?php
+  //test to see if user is logged in, if they are not, send them back to the login page.
+  //for this website, you need to be a registered user to use it.
+  if(!isset($_SESSION['username'])){
+    //send to login.php
+    header('Location: login.php');
+  }
+?>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -87,7 +96,7 @@
       <ul class="nav navbar-nav">
         <li><a href="collections.php">My Collection</a></li>
         <li><a href="templates.php">Templates</a></li>
-        <li><a class = "logoutButton" href="login.php">Log Out</a></li>
+        <li><a class = "logoutButton" href="logout.php">Log Out</a></li>
       </ul>
     </div>
   </div>
@@ -134,7 +143,13 @@
       <div class = "container centered">
         <h2>Returned Books: </h2>
         <?php
-        $sql = $_SESSION['sql'];
+        if(isset($_SESSION['sql'])){
+          $sql = $_SESSION['sql'];
+
+        }else{
+          //session sql not set, return all books instead
+          $sql = "SELECT * FROM books;";
+        }
         //uncomment to see sql query being run
         //echo "<p>".$sql."</p>";
         echo "<div class = 'table-responsive'>";

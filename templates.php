@@ -44,7 +44,13 @@
   </style>
 </head>
 <body>
-
+<?php
+//check to see if user is logged on
+if(!isset($_SESSION['username'])){
+  //redirect to login page.
+  header('Location: login.php');
+}
+?>
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -136,20 +142,34 @@
         </div>
       </div>
 
+
+
       </div>
     </div>
     <hr>
-    <h2 align="center"><?php echo $_SESSION['template_name'] ?> Bibliography</h2>
     <?php
     //get session variable w/ template in it
-      $return_template = $_SESSION['return_template'];
-      foreach($return_template as $row){
-        echo "<p align='center'>";
-        echo $row;
-        echo "</p>";
+      if(isset($_SESSION['return_template'])){
+        //template has been returned
+        echo "<h2 align='center'>".$_SESSION['template_name']." Bibliography</h2>";
+        $return_template = $_SESSION['return_template'];
+        foreach($return_template as $row){
+          echo "<p align='center'>";
+          echo $row;
+          echo "</p>";
+        }
+        echo "<br/>";
       }
-      echo "<br/>";
+      else{
+        //template has not been returned, do not print anything.
+        echo "<h2 align='center'>No Template Selected</h2>";
+        echo "<p align='center'></p>";
+      }
     ?>
+  </div>
+
+  <div class="text-center" >
+    <a href="./exportWord.php" class="btn btn-info">Export to Word.doc</a>
   </div>
 
 </body>

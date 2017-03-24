@@ -16,6 +16,7 @@ session_start();
         $count = "SELECT userName, pass from account WHERE userName='$username' AND pass='$password';";
         $result = mysqli_query($connection, $count);
         if($result && mysqli_num_rows($result) > 0){
+          //user is found, set session variable and redirect to main page.
           $_SESSION['username'] = $username;
           header('Location: index.php');
           //username and password combo exist in database, redirect to index.php
@@ -26,6 +27,16 @@ session_start();
         }
 
       }
+
+      else{
+        //username or password was not set, redirect back to the login password_get_info
+        header('Location: login.php');
+      }
+    }
+
+    else{
+      //user is trying to access page indirectly, redirect to login page
+      header('Location: login.php');
     }
   ?>
 </body>
