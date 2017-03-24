@@ -12,17 +12,17 @@ body
 }
 
 table.sortable thead {
-    background-color:#eee;
+    background-color:black;
     opacity: 0.8;
-    color:#666666;
+    color:white;
     font-weight: bold;
     cursor: default;
 }
 
 table.sortable tbody {
-    background-color:#eee;
+    background-color:black;
     opacity: 0.8;
-    color:#666666;
+    color:white;
 }
 
 /*not sure how this will look on different monitors... doing this to accomodate the sidenav bar in index.php line 98*/

@@ -28,6 +28,12 @@
 
 </head>
 <body>
+<?php
+  if(!isset($_SESSION['username'])){
+    //send to login page
+    header('Location: login.php');
+  }
+?>
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
