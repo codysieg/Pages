@@ -1,17 +1,19 @@
-<?php
+
+<?php 
+
 $host = "localhost";
 $database = "pages";
 $user = "root";
-$pass = "";
-$connection = mysqli_connect($host, $user, $pass, $database) or die("Unable to connect.");
+$password = "";
 
-/*
-$sql = "SELECT * FROM account";
-$result = mysqli_query($connection, $sql);
+$connection = mysqli_connect($host, $user, $password, $database);
 
-while($row = mysqli_fetch_assoc($result)){
-  echo $row['aid']." - ".$row['firstName']." - ".$row['lastName']." - ".$row['email']." - ".$row['userName']." - ".$row['pass'];
-  echo "<br/>";
-}*/
-
+$error = mysqli_connect_error();
+if($error != null)
+{
+  $output = "<p>Unable to connect to database!</p>";
+  exit($output);
+}
 ?>
+
+

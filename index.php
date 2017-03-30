@@ -1,11 +1,12 @@
 <?php
   session_start();
+   include 'databaseConnection.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Welcome to Pages!</title>
+  <title> Add Pages!</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -113,9 +114,32 @@
       <div class="wrap">
       <!-- This will display SQL results from DB -->
       <p class="form-title">
-          <h3 style = "color:white;">Add a New Book:</h3> </p>
-      <form action = "addBookToDatabase.php" method="POST" id="mainForm"/>
-      <input type="text" name ="ISBN" placeholder="ISBN : "/>
+      <h3 style = "color:white;">Add a New Book:</h3> </p>
+      <form action = "addBookToDatabase.php" method="POST" id="mainForm">
+      <?php
+   
+
+    
+
+
+    $query = "SELECT * FROM attributes  ";
+    
+    $retval = mysqli_query($connection, $query);
+    
+       
+              
+              while ($row = mysqli_fetch_array($retval)){
+                echo '<input type="text" id="'.$row["attName"].'name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
+              }
+             
+             
+      ?>
+       <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
+     
+      </form>
+      <a href="addAttribute.php"><input type="submit" value="Add Attribute" class="btn btn-success btn-sm"/></a>
+      
+      <!-- CODE REPLACED BY PHP 
       <input type="text" name ="title" placeholder="Title of Book : "/>
       <input type="text" name ="authorFirst" placeholder="Author (First) : "/>
       <input type="text" name ="authorLast" placeholder="Author (Last) : "/>
@@ -123,12 +147,28 @@
       <input type="text" name ="publisher" placeholder="Publisher : "/>
       <input type="text" name ="pdate" placeholder="Publisher Date : "/>
       <input type="text" name ="genre" placeholder="Genre : "/>
-      <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
-      </form>
+      <input type="submit" value="Submit" class="btn btn-success btn-sm"/>-->
+      
       <hr>
+      
+      
+      
+      
+      
       <p class="form-title">
           <h3 style = "color:white;">Search for Books:</h3> </p>
-      <form action = "searchBookDatabase.php" method="POST" id="mainForm"/>
+      <form action = "searchBookDatabase.php" method="POST" id="mainForm">
+        
+      <?php
+       $query = "SELECT * FROM attributes  ";
+    
+       $retval = mysqli_query($connection, $query);
+    
+         while ($row = mysqli_fetch_array($retval)){
+                echo '<input type="text" id="'.$row["attName"].'name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
+              }
+        ?>
+      <!--
       <input type="text" name ="ISBN" placeholder="ISBN : "/>
       <input type="text" name ="title" placeholder="Title of Book : "/>
       <input type="text" name ="authorFirst" placeholder="Author (First) : "/>
@@ -136,8 +176,10 @@
       <input type="text" name ="pcity" placeholder="Publishing City : "/>
       <input type="text" name ="publisher" placeholder="Publisher : "/>
       <input type="text" name ="pdate" placeholder="Publisher Date : "/>
-      <input type="text" name ="genre" placeholder="Genre : "/>
-      <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
+      <input type="text" name ="genre" placeholder="Genre : "/>-->
+      
+      
+      <input type="submit" value="Submit" class="btn btn-success btn-sm"/> 
       </form>
 
       <div class = "container centered">
