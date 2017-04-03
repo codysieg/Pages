@@ -115,21 +115,20 @@
       <!-- This will display SQL results from DB -->
       <p class="form-title">
       <h3 style = "color:white;">Add a New Book:</h3> </p>
-      <form action = "addBookToDatabase.php" method="POST" id="mainForm">
+      <form action = "addBookToDatabase.php" method="post" id="mainForm">
       <?php
    
 
     
 
 
-    $query = "SELECT * FROM attributes  ";
+    $query = "SELECT * FROM attributes; ";
     
     $retval = mysqli_query($connection, $query);
     
        
-              
-              while ($row = mysqli_fetch_array($retval)){
-                echo '<input type="text" id="'.$row["attName"].'name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
+              while ($row = mysqli_fetch_array($retval)){  
+                echo '<input type="text" id="'.$row["attName"].'" name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
               }
              
              
@@ -137,6 +136,8 @@
        <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
      
       </form>
+      
+      
       <a href="addAttribute.php"><input type="submit" value="Add Attribute" class="btn btn-success btn-sm"/></a>
       
       <!-- CODE REPLACED BY PHP 

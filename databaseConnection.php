@@ -14,6 +14,8 @@ if($error != null)
   $output = "<p>Unable to connect to database!</p>";
   exit($output);
 }
+            
+
 ?>
 
 

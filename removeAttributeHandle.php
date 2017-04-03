@@ -9,7 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
   $sql = "DELETE FROM attributes WHERE attributes.attName='$attribute';";
   $retval = mysqli_query($connection, $sql);
-   $sql = "ALTER TABLE books DROP COLUMN  ;";
+  
+   $sql = "ALTER TABLE books DROP COLUMN $attribute;";
   $retval = mysqli_query($connection, $sql);
   header("Location:index.php");
 
