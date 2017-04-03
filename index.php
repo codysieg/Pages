@@ -166,7 +166,7 @@
        $retval = mysqli_query($connection, $query);
     
          while ($row = mysqli_fetch_array($retval)){
-                echo '<input type="text" id="'.$row["attName"].'name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
+                echo '<input type="text" id="'.$row["attName"].'"name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
               }
         ?>
       <!--
@@ -187,10 +187,13 @@
         <h2>Returned Books: </h2>
         <?php
         if(isset($_SESSION['sql'])){
+          echo "a";
           $sql = $_SESSION['sql'];
+          
 
         }else{
           //session sql not set, return all books instead
+          echo "b";
           $sql = "SELECT * FROM books;";
         }
         //uncomment to see sql query being run
@@ -210,7 +213,7 @@
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
-        include 'databaseConnection.php';
+      
         $result = mysqli_query($connection, $sql);
         while($row = mysqli_fetch_assoc($result)){
           echo "<tr>";
