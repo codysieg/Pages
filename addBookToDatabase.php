@@ -22,15 +22,19 @@
       
     
          while ($row = mysqli_fetch_array($retval2)){
-                 $attributeVal = $_POST[".row['attName']."];
+                 $attributeVal = $_POST[$row['attName']];
                 $att = $row['attName'];
                 
                   $query3 = "UPDATE books SET books.$att='$attributeVal' WHERE books.ISBN='$key';";
                   $retval3 = mysqli_query($connection, $query3);
+                  header("Location:index.php");
                 
               }
+   }else{
+   header("Location: index.php");
    }
     ?>
+   }
   
   
   
