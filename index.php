@@ -187,13 +187,13 @@
         <h2>Returned Books: </h2>
         <?php
         if(isset($_SESSION['sql'])){
-          echo "a";
+    
           $sql = $_SESSION['sql'];
           
 
         }else{
           //session sql not set, return all books instead
-          echo "b";
+         
           $sql = "SELECT * FROM books;";
         }
         //uncomment to see sql query being run
