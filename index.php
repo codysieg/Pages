@@ -1,12 +1,15 @@
 <?php
   session_start();
-   include 'databaseConnection.php';
+  if(!isset($_SESSION['username'])){
+    header('Location: login.php');
+  }
+  include 'databaseConnection.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Add Pages!</title>
+  <title>Welcome to Pages!</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,6 +18,15 @@
   <script src="js/sorttable.js" type = "text/javascript"></script>
   <link rel="stylesheet" href="css/index.css">
   <style>
+
+    .modal-body{
+      margin-left: 30%;
+    }
+
+    .wrap{
+      margin-left: 400px;
+      margin-right: 400px;
+    }
 
     .logoutButton{
       float: right !important;
@@ -110,90 +122,83 @@
 
     </div>
     <div class="col-sm-8 text-left">
-      <hr>
       <div class="wrap">
       <!-- This will display SQL results from DB -->
-      <p class="form-title">
-      <h3 style = "color:white;">Add a New Book:</h3> </p>
-      <form action = "addBookToDatabase.php" method="post" id="mainForm">
-      <?php
-   
+<p></p>
 
-    
+          <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" id ="close" data-target="#myModal">Add a New Book</button>
+          <!-- Modal -->
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
+          <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add a New Book: </h4>
+              </div>
+              <div class="modal-body">
+                <form action = "addBookToDatabase.php" method="POST" id="mainForm">
+                <?php
+                $query = "SELECT * FROM attributes; ";
+                $retval = mysqli_query($connection, $query);
+                while ($row = mysqli_fetch_array($retval)){
+                  echo '<input type="text" id="'.$row["attName"].'" name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
 
-    $query = "SELECT * FROM attributes; ";
-    
-    $retval = mysqli_query($connection, $query);
-    
-       
-              while ($row = mysqli_fetch_array($retval)){  
-                echo '<input type="text" id="'.$row["attName"].'" name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
-              }
-             
-             
-      ?>
-       <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
-     
-      </form>
-      
-      
-      <a href="addAttribute.php"><input type="submit" value="Add Attribute" class="btn btn-success btn-sm"/></a>
-      
-      <!-- CODE REPLACED BY PHP 
-      <input type="text" name ="title" placeholder="Title of Book : "/>
-      <input type="text" name ="authorFirst" placeholder="Author (First) : "/>
-      <input type="text" name ="authorLast" placeholder="Author (Last) : "/>
-      <input type="text" name ="pcity" placeholder="Publishing City : "/>
-      <input type="text" name ="publisher" placeholder="Publisher : "/>
-      <input type="text" name ="pdate" placeholder="Publisher Date : "/>
-      <input type="text" name ="genre" placeholder="Genre : "/>
-      <input type="submit" value="Submit" class="btn btn-success btn-sm"/>-->
-      
-      <hr>
-      
-      
-      
-      
-      
-      <p class="form-title">
-          <h3 style = "color:white;">Search for Books:</h3> </p>
-      <form action = "searchBookDatabase.php" method="POST" id="mainForm">
-        
-      <?php
-       $query = "SELECT * FROM attributes  ";
-    
-       $retval = mysqli_query($connection, $query);
-    
-         while ($row = mysqli_fetch_array($retval)){
-                echo '<input type="text" id="'.$row["attName"].'"name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
-              }
-        ?>
-      <!--
-      <input type="text" name ="ISBN" placeholder="ISBN : "/>
-      <input type="text" name ="title" placeholder="Title of Book : "/>
-      <input type="text" name ="authorFirst" placeholder="Author (First) : "/>
-      <input type="text" name ="authorLast" placeholder="Author (Last) : "/>
-      <input type="text" name ="pcity" placeholder="Publishing City : "/>
-      <input type="text" name ="publisher" placeholder="Publisher : "/>
-      <input type="text" name ="pdate" placeholder="Publisher Date : "/>
-      <input type="text" name ="genre" placeholder="Genre : "/>-->
-      
-      
-      <input type="submit" value="Submit" class="btn btn-success btn-sm"/> 
-      </form>
+                }
+                  ?>
+                  <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
+                </form>
+              </div>
+            <a href="addAttribute.php"><input type="submit" value="Add Attribute" class="btn btn-success btn-sm"/></a>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" id ="close" data-target="#myModal2">Search</button>
+          <!-- Modal -->
+          <div id="myModal2" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+          <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Search for a Book: </h4>
+              </div>
+              <div class="modal-body">
+                <form action = "searchBookDatabase.php" method="POST" id="mainForm">
+                  <?php
+                $query = "SELECT * FROM attributes; ";
+                $retval = mysqli_query($connection, $query);
+                while ($row = mysqli_fetch_array($retval)){
+                  echo '<input type="text" id="'.$row["attName"].'" name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
+
+                }
+                  ?>
+                <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+          <hr>
 
       <div class = "container centered">
         <h2>Returned Books: </h2>
         <?php
         if(isset($_SESSION['sql'])){
-    
           $sql = $_SESSION['sql'];
-          
 
         }else{
           //session sql not set, return all books instead
-         
           $sql = "SELECT * FROM books;";
         }
         //uncomment to see sql query being run
@@ -213,7 +218,7 @@
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
-      
+        include 'databaseConnection.php';
         $result = mysqli_query($connection, $sql);
         while($row = mysqli_fetch_assoc($result)){
           echo "<tr>";

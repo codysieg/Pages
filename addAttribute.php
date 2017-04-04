@@ -107,29 +107,29 @@
       <p class="form-title">
       <h3 style = "color:white;">Add Attribute:</h3> </p>
       <form action = "addAttributeHandle.php" method="POST" id="mainForm">
-      
+
    <input type="text" name="addAtt" id="addAtt" placeholder="Attribute Name">
 
-    
+
        <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
 </form>
-      
-      
-      
 
-      
+
+
+
+
       <hr>
-      
-      
-      
-      
-      
+
+
+
+
+
       <p class="form-title">
           <h3 style = "color:white;">Remove Attribute:</h3> </p>
       <form action = "removeAttributeHandle.php" method="POST" id="mainForm">
-        
-     
-      
+
+
+
       <input type="text" name="removeAtt" id="removeAtt" placeholder="Attribute Name">
-      <input type="submit" value="Submit" class="btn btn-success btn-sm"/> 
+      <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
       </form>

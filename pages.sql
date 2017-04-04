@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2017 at 08:25 AM
+-- Generation Time: Apr 04, 2017 at 05:27 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -45,6 +45,7 @@ INSERT INTO `account` (`aid`, `firstName`, `lastName`, `email`, `userName`, `pas
 ('11', 'bob', 'joe', 'bjoe@gmail.com', 'bjoe', 'pass'),
 ('12', 'bob', 'joe', 'bjoe@gmail.com', 'bjoe', 'pass'),
 ('13', 'Arvind', 'Dhindsa', 'arvind.dhindsa1@gmai', 'Arvind', ''),
+('14', 'Arvind', 'Dhindsa', 'arvind.dhindsa1@gmai', 'arvindd', 'pass'),
 ('2', 'Mike', 'Vasko', 'mv@abc.com', 'mikevasko', 'pass'),
 ('3', 'John', 'Doe', 'jdoe@gmail.com', 'jdoe', 'pass'),
 ('4', 'Jane', 'Doe', 'janedoe@abc.com', 'janedoe', '123pass'),
@@ -77,7 +78,9 @@ INSERT INTO `attributes` (`attID`, `attName`) VALUES
 (9, 'publisher'),
 (10, 'ISBN'),
 (11, 'genre'),
-(12, 'pdate');
+(12, 'pdate'),
+(13, 'copies'),
+(14, 'type');
 
 -- --------------------------------------------------------
 
@@ -93,22 +96,24 @@ CREATE TABLE `books` (
   `pcity` varchar(20) DEFAULT NULL,
   `publisher` varchar(50) DEFAULT NULL,
   `pdate` varchar(15) DEFAULT NULL,
-  `genre` varchar(15) DEFAULT NULL
+  `genre` varchar(15) DEFAULT NULL,
+  `copies` varchar(30) DEFAULT NULL,
+  `type` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`ISBN`, `title`, `authorFirst`, `authorLast`, `pcity`, `publisher`, `pdate`, `genre`) VALUES
-('0026515628', 'Glencoe Health, A Guide to Wellness, Student Edition', 'Hill', 'McGraw', 'Atlanta', 'McGraw-Hill Education', '2005', 'Education'),
-('0670032735', 'The Book on Bush: How George W. (Mis)leads America', 'Eric', 'Alterman', 'New York', 'The New Yorker', '2004', 'Politics'),
-('0747532699', 'Harry Potter and the Philosopher\'s Stone', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1997', 'Fantasy'),
-('0747538492', 'Harry Potter and the Chamber of Secrets', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1998', 'Fantasy'),
-('0747542155', 'Harry Potter and the Prisoner of Azkaban', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1999', 'Fantasy'),
-('0802042031', 'Concise Historical Atlas of Canada', 'William', 'Dean', 'Toronto', 'University of Toronto Press', '1998', 'History'),
-('1292018194', 'Java: How to Program : Early Objects', 'Paul', 'Deitel', 'New York City', 'Pearson Education', '2014', 'Education'),
-('9780007308187', 'Practical Fly Fishing', 'Larry', 'St John', 'New York', 'MacMillan Company', '1920', 'Sports');
+INSERT INTO `books` (`ISBN`, `title`, `authorFirst`, `authorLast`, `pcity`, `publisher`, `pdate`, `genre`, `copies`, `type`) VALUES
+('0026515628', 'Glencoe Health, A Guide to Wellness, Student Edition', 'Hill', 'McGraw', 'Atlanta', 'McGraw-Hill Education', '2005', 'Education', NULL, NULL),
+('0670032735', 'The Book on Bush: How George W. (Mis)leads America', 'Eric', 'Alterman', 'New York', 'The New Yorker', '2004', 'Politics', NULL, NULL),
+('0747532699', 'Harry Potter and the Philosopher\'s Stone', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1997', 'Fantasy', NULL, NULL),
+('0747538492', 'Harry Potter and the Chamber of Secrets', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1998', 'Fantasy', NULL, NULL),
+('0747542155', 'Harry Potter and the Prisoner of Azkaban', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1999', 'Fantasy', NULL, NULL),
+('0802042031', 'Concise Historical Atlas of Canada', 'William', 'Dean', 'Toronto', 'University of Toronto Press', '1998', 'History', NULL, NULL),
+('1292018194', 'Java: How to Program : Early Objects', 'Paul', 'Deitel', 'New York City', 'Pearson Education', '2014', 'Education', NULL, NULL),
+('9780007308187', 'Practical Fly Fishing', 'Larry', 'St John', 'New York', 'MacMillan Company', '1920', 'Sports', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -126,13 +131,8 @@ CREATE TABLE `collections` (
 --
 
 INSERT INTO `collections` (`cid`, `ISBN`) VALUES
-(8, '0026515628'),
-(7, '0670032735'),
-(6, '0747532699'),
-(5, '0747538492'),
-(4, '0747542155'),
-(3, '0802042031'),
-(2, '1292018194');
+(1, '0026515628'),
+(2, '0670032735');
 
 --
 -- Indexes for dumped tables
@@ -171,7 +171,7 @@ ALTER TABLE `collections`
 -- AUTO_INCREMENT for table `attributes`
 --
 ALTER TABLE `attributes`
-  MODIFY `attID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `attID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --

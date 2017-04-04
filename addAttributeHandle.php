@@ -5,7 +5,7 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $attribute = $_POST['addAtt'];
-  
+
 
   $sql = "INSERT INTO attributes (attNAME) VALUES ('$attribute');";
   $retval = mysqli_query($connection, $sql);

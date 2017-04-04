@@ -11,18 +11,22 @@ body
   color: white;
 }
 
+.table-responsive{
+  overflow: scroll;
+}
+
 table.sortable thead {
-    background-color:black;
-    opacity: 0.8;
+    background: rgba(0,0,0,0.4) !important;
     color:white;
     font-weight: bold;
     cursor: default;
+    overflow: scroll;
 }
 
 table.sortable tbody {
-    background-color:black;
-    opacity: 0.8;
+    background: rgba(0,0,0,0.4) !important;
     color:white;
+    overflow: scroll;
 }
 
 /*not sure how this will look on different monitors... doing this to accomodate the sidenav bar in index.php line 98*/

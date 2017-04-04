@@ -1,5 +1,8 @@
 <?php
   session_start();
+  if(!isset($_SESSION['username'])){
+    header('Location: login.php');
+  }
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +15,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
+
+  .italics{
+    white-space: nowrap;
+    font-style: italic;
+  }
+
+  .bold{
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
   body{
     background: url('http://wallpapercave.com/wp/ijo8KeK.jpg');
     background-size: cover;
@@ -81,9 +95,17 @@ if(!isset($_SESSION['username'])){
       <div class="form-group">
         <label for="sel1">Select which template you wish to use: </label>
         <select class="form-control" id="sel1" name = "website_string">
-          <option value = "MLA">MLA Citation Style</option>
-          <option value = "APA">APA Citation Style</option>
-          <option value = "Chicago/Turabian">Chicago/Turabian Style</option>
+          <?php
+          //get all of the templates in the database
+          include "databaseConnection.php";
+          $sql = "SELECT tid, tname FROM templates;";
+          $result = mysqli_query($connection, $sql);
+          while($rows = mysqli_fetch_array($result)){
+            $id = $rows['tid'];
+            $name = $rows['tname'];
+            echo "<option value = ".$id.">$name</option>";
+          }
+          ?>
         </select>
       </div>
       <input type="submit" value="Submit" name ="submit" class="btn btn-success btn-sm" id="close"/>
@@ -106,30 +128,87 @@ if(!isset($_SESSION['username'])){
           <!--Insert form that will be used to create a new template. -->
           <!--Will only satisfy the 8 attributes currently in Books. (ISBN, title, authorFirst, authorLast, pcity, publisher, pdate, genre)-->
           <form method = "post" action = "createTemplate.php">
+          <input type="text" name ="tname" class = "form-control" placeholder="Title of Template: "/><br/><br/>
           <label>Enter the attributes you want to have...</label><br/>
           <div class="form-group">
             <input type="text" name ="firstAtt" class = "form-control" placeholder="First Attribute: "/>
+            <input type="checkbox" name = "firstBold">Bold
+            <input type="checkbox" name = "firstItal">Italics
+            <select name="firstSep">
+              <option value=" "> </option>
+              <option value=", ">, </option>
+              <option value=". ">. </option>
+            </select>
           </div>
           <div class="form-group">
             <input type="text" name ="secondAtt" class = "form-control" placeholder="Second Attribute: "/>
+            <input type="checkbox" name = "secondBold">Bold
+            <input type="checkbox" name = "secondItal">Italics
+            <select name="secondSep">
+              <option value=" "> </option>
+              <option value=", ">, </option>
+              <option value=". ">. </option>
+            </select>
           </div>
           <div class="form-group">
             <input type="text" name ="thirdAtt" class = "form-control" placeholder="Third Attribute: "/>
+            <input type="checkbox" name = "thirdBold">Bold
+            <input type="checkbox" name = "thirdItal">Italics
+            <select name="thirdSep">
+              <option value=" "> </option>
+              <option value=", ">, </option>
+              <option value=". ">. </option>
+            </select>
           </div>
           <div class="form-group">
             <input type="text" name ="fourthAtt" class = "form-control" placeholder="Fourth Attribute: "/>
+            <input type="checkbox" name = "fourthBold">Bold
+            <input type="checkbox" name = "fourthItal">Italics
+            <select name="fourthSep">
+              <option value=" "> </option>
+              <option value=", ">, </option>
+              <option value=". ">. </option>
+            </select>
           </div>
           <div class="form-group">
             <input type="text" name ="fifthAtt" class = "form-control"  placeholder="Fifth Attribute: "/>
+            <input type="checkbox" name = "fifthBold">Bold
+            <input type="checkbox" name = "fifthItal">Italics
+            <select name="fifthSep">
+              <option value=" "> </option>
+              <option value=", ">, </option>
+              <option value=". ">. </option>
+            </select>
           </div>
           <div class="form-group">
             <input type="text" name ="sixthAtt" class = "form-control" placeholder="Sixth Attribute: "/>
+            <input type="checkbox" name = "sixthBold">Bold
+            <input type="checkbox" name = "sixthItal">Italics
+            <select name="sixthtSep">
+              <option value=" "> </option>
+              <option value=", ">, </option>
+              <option value=". ">. </option>
+            </select>
           </div>
           <div class="form-group">
             <input type="text" name ="seventhAtt" class = "form-control" placeholder="Seventh Attribute: "/>
+            <input type="checkbox" name = "seventhBold">Bold
+            <input type="checkbox" name = "seventhItal">Italics
+            <select name="seventhSep">
+              <option value=" "> </option>
+              <option value=", ">, </option>
+              <option value=". ">. </option>
+            </select>
           </div>
           <div class="form-group">
             <input type="text" name ="eigthAtt" class = "form-control" placeholder="Eigth Attribute: "/>
+            <input type="checkbox" name = "eigthBold">Bold
+            <input type="checkbox" name = "eigthItal">Italics
+            <select name="eigthSep">
+              <option value=" "> </option>
+              <option value=", ">, </option>
+              <option value=". ">. </option>
+            </select>
           </div>
           <div>
             <input type="submit" value="Submit" class="btn btn-info btn-sm"/>
