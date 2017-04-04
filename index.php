@@ -219,7 +219,9 @@
         echo "</thead>";
         echo "<tbody>";
         include 'databaseConnection.php';
+        
         $result = mysqli_query($connection, $sql);
+        
         while($row = mysqli_fetch_assoc($result)){
           echo "<tr>";
           echo "<td>".$row['ISBN']."</td>";

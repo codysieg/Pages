@@ -10,7 +10,7 @@ include 'databaseConnection.php';
   <?php
   
   
-  if ($_SERVER["REQUEST_METHOD"] == "POST"){
+  if ($_SERVER["REQUEST_METHOD"] == "POST" ){
     //if any fields are set, appends them to SQL query
       $query = "SELECT * FROM attributes;";
       $retval = mysqli_query($connection, $query);
@@ -41,7 +41,7 @@ include 'databaseConnection.php';
     
      $_SESSION['sql'] = $sql;
     echo  $_SESSION['sql'] ;
-    //  header("Location:index.php");
+     header("Location:index.php");
       }
   
    
