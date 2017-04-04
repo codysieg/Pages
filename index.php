@@ -3,6 +3,7 @@
   if(!isset($_SESSION['username'])){
     header('Location: login.php');
   }
+  include 'databaseConnection.php';
 ?>
 
 <!DOCTYPE html>
@@ -138,18 +139,18 @@
               </div>
               <div class="modal-body">
                 <form action = "addBookToDatabase.php" method="POST" id="mainForm"/>
-                <input type="text" name ="ISBN" placeholder="ISBN : "/><br/><br/>
-                <input type="text" name ="title" placeholder="Title of Book : "/><br/><br/>
-                <input type="text" name ="authorFirst" placeholder="Author (First) : "/><br/><br/>
-                <input type="text" name ="authorLast" placeholder="Author (Last) : "/><br/><br/>
-                <input type="text" name ="pcity" placeholder="Publishing City : "/><br/><br/>
-                <input type="text" name ="publisher" placeholder="Publisher : "/><br/><br/>
-                <input type="text" name ="pdate" placeholder="Publisher Date : "/><br/><br/>
-                <input type="text" name ="genre" placeholder="Genre : "/><br/><br/>
-                <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
-                </form>
+                <?php
+                $query = "SELECT * FROM attributes; ";
+                $retval = mysqli_query($connection, $query);
+                while ($row = mysqli_fetch_array($retval)){
+                  echo '<input type="text" id="'.$row["attName"].'" name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
 
+                }
+                  ?>
+                  <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
+                </form>
               </div>
+            <a href="addAttribute.php"><input type="submit" value="Add Attribute" class="btn btn-success btn-sm"/></a>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
