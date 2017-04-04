@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,21 +66,6 @@ session_start();
                   <a href = "register.php">
                     <input type="button" value="Not a user? Register now." class="btn btn-success btn-block"/>
                   </a>
-                  <div class="remember-forgot">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="checkbox">
-                                  <label>
-                                      <input type="checkbox" />
-                                      Remember Me
-                                  </label>
-                              </div>
-                          </div>
-                          <div class="col-md-6 forgot-pass-content">
-                              <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
-                          </div>
-                      </div>
-                  </div>
                   </form>
               </div>
           </div>

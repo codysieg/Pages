@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['username'])){
+    header('Location: login.php');
+  }
+?>
+
 <!DOCTYPE html>
   <?php
   // http header describes type of file output, filename and attachment type
