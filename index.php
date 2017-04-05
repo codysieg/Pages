@@ -144,6 +144,7 @@
                 $retval = mysqli_query($connection, $query);
                 while ($row = mysqli_fetch_array($retval)){
                   echo '<input type="text" id="'.$row["attName"].'" name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
+                  echo "<br/>";
 
                 }
                   ?>
