@@ -84,7 +84,7 @@ if(!isset($_SESSION['username'])){
           <li><a href='index.php'>Home</a></li>
           <li><a href="collections.php">My Collection</a></li>
           <li><a href="templates.php">Templates</a></li>
-          <li><a class = "logoutButton" href="logout.php">Log Out</a></li>
+          <li><a class = "logoutButton" href="login.php">Log Out</a></li>
         </ul>
       </div>
     </div>
@@ -131,7 +131,24 @@ if(!isset($_SESSION['username'])){
           <input type="text" name ="tname" class = "form-control" placeholder="Title of Template: "/><br/><br/>
           <label>Enter the attributes you want to have...</label><br/>
           <div class="form-group">
-            <input type="text" name ="firstAtt" class = "form-control" placeholder="First Attribute: "/>
+            <!--Drop down menu for all attributes.-->
+            <?php
+            //have to get all of the attributes from attributes table.
+            include "databaseConnection.php";
+            $attributes = [];
+            $sql = "SELECT * FROM attributes ORDER BY attName ASC;";
+            $result = mysqli_query($connection, $sql);
+            while($row = mysqli_fetch_array($result)){
+              $attributes[] = $row['attName'];
+            }
+
+            echo "<select name = 'firstAtt' class = 'form-control' placeholder='First Attribute: '>";
+            echo "<option value = ' '> </option>";
+            foreach($attributes as $att){
+              echo "<option value = '$att'>".$att."</option>";
+            }
+            echo "</select>";
+            ?>
             <input type="checkbox" name = "firstBold">Bold
             <input type="checkbox" name = "firstItal">Italics
             <select name="firstSep">
@@ -141,7 +158,14 @@ if(!isset($_SESSION['username'])){
             </select>
           </div>
           <div class="form-group">
-            <input type="text" name ="secondAtt" class = "form-control" placeholder="Second Attribute: "/>
+            <?php
+            echo "<select name = 'secondAtt' class = 'form-control' placeholder='Second Attribute: '>";
+            echo "<option value = ' '> </option>";
+            foreach($attributes as $att){
+              echo "<option value = '$att'>".$att."</option>";
+            }
+            echo "</select>";
+            ?>
             <input type="checkbox" name = "secondBold">Bold
             <input type="checkbox" name = "secondItal">Italics
             <select name="secondSep">
@@ -151,7 +175,14 @@ if(!isset($_SESSION['username'])){
             </select>
           </div>
           <div class="form-group">
-            <input type="text" name ="thirdAtt" class = "form-control" placeholder="Third Attribute: "/>
+            <?php
+            echo "<select name = 'thirdAtt' class = 'form-control' placeholder='Third Attribute: '>";
+            echo "<option value = ' '> </option>";
+            foreach($attributes as $att){
+              echo "<option value = '$att'>".$att."</option>";
+            }
+            echo "</select>";
+            ?>
             <input type="checkbox" name = "thirdBold">Bold
             <input type="checkbox" name = "thirdItal">Italics
             <select name="thirdSep">
@@ -161,7 +192,14 @@ if(!isset($_SESSION['username'])){
             </select>
           </div>
           <div class="form-group">
-            <input type="text" name ="fourthAtt" class = "form-control" placeholder="Fourth Attribute: "/>
+            <?php
+            echo "<select name = 'fourthAtt' class = 'form-control' placeholder='Fourth Attribute: '>";
+            echo "<option value = ' '> </option>";
+            foreach($attributes as $att){
+              echo "<option value = '$att'>".$att."</option>";
+            }
+            echo "</select>";
+            ?>
             <input type="checkbox" name = "fourthBold">Bold
             <input type="checkbox" name = "fourthItal">Italics
             <select name="fourthSep">
@@ -171,7 +209,14 @@ if(!isset($_SESSION['username'])){
             </select>
           </div>
           <div class="form-group">
-            <input type="text" name ="fifthAtt" class = "form-control"  placeholder="Fifth Attribute: "/>
+            <?php
+            echo "<select name = 'fifthAtt' class = 'form-control' placeholder='Fifth Attribute: '>";
+            echo "<option value = ' '> </option>";
+            foreach($attributes as $att){
+              echo "<option value = '$att'>".$att."</option>";
+            }
+            echo "</select>";
+            ?>
             <input type="checkbox" name = "fifthBold">Bold
             <input type="checkbox" name = "fifthItal">Italics
             <select name="fifthSep">
@@ -181,8 +226,15 @@ if(!isset($_SESSION['username'])){
             </select>
           </div>
           <div class="form-group">
-            <input type="text" name ="sixthAtt" class = "form-control" placeholder="Sixth Attribute: "/>
-            <input type="checkbox" name = "sixthBold">Bold
+            <?php
+            echo "<select name = 'sixthAtt' class = 'form-control' placeholder='Sixth Attribute: '>";
+            echo "<option value = ' '> </option>";
+            foreach($attributes as $att){
+              echo "<option value = '$att'>".$att."</option>";
+            }
+            echo "</select>";
+            ?>
+             <input type="checkbox" name = "sixthBold">Bold
             <input type="checkbox" name = "sixthItal">Italics
             <select name="sixthtSep">
               <option value=" "> </option>
@@ -191,7 +243,14 @@ if(!isset($_SESSION['username'])){
             </select>
           </div>
           <div class="form-group">
-            <input type="text" name ="seventhAtt" class = "form-control" placeholder="Seventh Attribute: "/>
+            <?php
+            echo "<select name = 'seventhAtt' class = 'form-control' placeholder='Seventh Attribute: '>";
+            echo "<option value = ' '> </option>";
+            foreach($attributes as $att){
+              echo "<option value = '$att'>".$att."</option>";
+            }
+            echo "</select>";
+            ?>
             <input type="checkbox" name = "seventhBold">Bold
             <input type="checkbox" name = "seventhItal">Italics
             <select name="seventhSep">
@@ -201,7 +260,14 @@ if(!isset($_SESSION['username'])){
             </select>
           </div>
           <div class="form-group">
-            <input type="text" name ="eigthAtt" class = "form-control" placeholder="Eigth Attribute: "/>
+            <?php
+            echo "<select name = 'eigthAtt' class = 'form-control' placeholder='Eigth Attribute: '>";
+            echo "<option value = ' '> </option>";
+            foreach($attributes as $att){
+              echo "<option value = '$att'>".$att."</option>";
+            }
+            echo "</select>";
+            ?>
             <input type="checkbox" name = "eigthBold">Bold
             <input type="checkbox" name = "eigthItal">Italics
             <select name="eigthSep">
