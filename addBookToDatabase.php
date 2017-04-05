@@ -29,7 +29,16 @@
                   $retval3 = mysqli_query($connection, $query3);
                   header("Location:index.php");
 
-              }
+      }
+      $sql = "SELECT Copies FROM books WHERE ISBN = '$key';";
+      $retval4 = mysqli_query($connection, $sql);
+      while ($row = mysqli_fetch_array($retval4)){
+        for($x = 1; $x <= $row['Copies']; $x++){
+          $sql = "INSERT INTO copies (ISBN, copyID) VALUES ('$key', '$x');";
+          mysqli_query($connection, $sql);
+        }
+      }
+
    }else{
    header("Location: index.php");
    }
