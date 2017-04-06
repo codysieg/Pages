@@ -86,9 +86,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
+        <li><a href='index.php'>Home</a></li>
         <li><a href="collections.php">My Collection</a></li>
         <li><a href="templates.php">Templates</a></li>
-        <li><a class = "logoutButton" href="logout.php">Log Out</a></li>
+        <li><a class = "logoutButton" href="login.php">Log Out</a></li>
       </ul>
     </div>
   </div>

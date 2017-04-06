@@ -110,7 +110,7 @@
         <li><a href='index.php'>Home</a></li>
         <li><a href="collections.php">My Collection</a></li>
         <li><a href="templates.php">Templates</a></li>
-        <li><a class = "logoutButton" href="logout.php">Log Out</a></li>
+        <li><a class = "logoutButton" href="login.php">Log Out</a></li>
       </ul>
     </div>
   </div>
@@ -145,13 +145,13 @@
                 $retval = mysqli_query($connection, $query);
                 while ($row = mysqli_fetch_array($retval)){
                   echo '<input type="text" id="'.$row["attName"].'" name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
+                  echo "<br/><br/>";
 
                 }
                   ?>
                   <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
                 </form>
               </div>
-            <a href="addAttribute.php"><input type="submit" value="Add Attribute" class="btn btn-success btn-sm"/></a>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
@@ -189,7 +189,10 @@
             </div>
             </div>
           </div>
+
+          <a href="addAttribute.php"><input type="submit" value="Add Attribute" class="btn btn-warning btn-lg"/></a>
         </div>
+
           <hr>
 
       <div class = "container centered">
@@ -223,7 +226,8 @@
         $result = mysqli_query($connection, $sql);
         while($row = mysqli_fetch_assoc($result)){
           echo "<tr>";
-          echo "<td>".$row['ISBN']."</td>";
+          echo "<td><a href='copies.php?id=".$row['ISBN']."' id = 'isbn_link'>".$row['ISBN']."</a></td>";
+          //echo "<td>".$row['ISBN']."</td>";
           echo "<td>".$row['title']."</td>";
           echo "<td>".$row['authorLast'].", ".$row['authorFirst']."</td>";
           echo "<td>".$row['pcity']."</td>";

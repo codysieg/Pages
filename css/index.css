@@ -10,6 +10,15 @@ body
   text-align: center;
   color: white;
 }
+#isbn_link{
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+}
+#speshul{
+  width: 250px;
+  height: 100px;
+}
 
 .table-responsive{
   overflow: scroll;
