@@ -6,7 +6,7 @@ if(!isset($_SESSION['username'])){
 
 // user is legitimate.
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-  if(isset($_POST["tname"]) && isset($_POST["firstAtt"]) && isset($_POST["secondAtt"]) && isset($_POST["thirdAtt"]) && isset($_POST["fourthAtt"]) && isset($_POST["fifthAtt"]) && isset($_POST["sixthAtt"]) && isset($_POST["seventhAtt"]) && isset($_POST["eigthAtt"])){
+  if(isset($_POST["tname"]) && (!empty($_POST["firstAtt"]) || !empty($_POST["secondAtt"]) || !empty($_POST["thirdAtt"]) || !empty($_POST["fourthAtt"]) || !empty($_POST["fifthAtt"]) || !empty($_POST["sixthAtt"]) || !empty($_POST["seventhAtt"]) || !empty($_POST["eigthAtt"]))){
     //only test to see if every attribute is filled in, this is mandatory for now.
     //will change it so only one can be entered later.
 

@@ -12,6 +12,7 @@
 </head>
 <body>
 <?php
+  error_reporting(E_ALL & ~E_NOTICE);
   if ($_SERVER["REQUEST_METHOD"] == "POST"){
     include 'databaseConnection.php';
     $booksInCollection = "select * from books, collections where books.ISBN = collections.ISBN";
@@ -56,14 +57,30 @@
 
     while($row = mysqli_fetch_array($result)){
       $tname = $row['tname'];
-      $firstAtt = $row['firstAtt'];
-      $secondAtt = $row['secondAtt'];
-      $thirdAtt = $row['thirdAtt'];
-      $fourthAtt = $row['fourthAtt'];
-      $fifthAtt = $row['fifthAtt'];
-      $sixthAtt = $row['sixthAtt'];
-      $seventhAtt = $row['seventhAtt'];
-      $eigthAtt = $row['eigthAtt'];
+      if(isset($row['firstAtt'])){
+        $firstAtt = $row['firstAtt'];
+      }
+      if(isset($row['secondAtt'])){
+        $secondAtt = $row['secondAtt'];
+      }
+      if(isset($row['thirdAtt'])){
+        $thirdAtt = $row['thirdAtt'];
+      }
+      if(isset($row['fourthAtt'])){
+        $fourthAtt = $row['fourthAtt'];
+      }
+      if(isset($row['fifthAtt'])){
+        $fifthAtt = $row['fifthAtt'];
+      }
+      if(isset($row['sixthAtt'])){
+        $sixthAtt = $row['sixthAtt'];
+      }
+      if(isset($row['seventhAtt'])){
+        $seventhAtt = $row['seventhAtt'];
+      }
+      if(isset($row['eigthAtt'])){
+        $eigthAtt = $row['eigthAtt'];
+      }
 
       $firstStyle = $row['firstStyle'];
       $secondStyle = $row['secondStyle'];
@@ -84,16 +101,50 @@
       $eigthSep = $row['eigthSep'];
     }
     // all attributes are now set
+    $first = "";
+    $second = "";
+    $third = "";
+    $fourth = "";
+    $fifth = "";
+    $sixth = "";
+    $seventh = "";
+    $eigth = "";
 
     while($row = mysqli_fetch_array($retval)){
-      $first = "<span class ='".$firstStyle."'>".$row[$firstAtt]."</span> ";
-      $second = "<span class ='".$secondStyle."'>".$row[$secondAtt]."</span> ";
-      $third = "<span class ='".$thirdStyle."'>".$row[$thirdAtt]."</span> ";
-      $fourth = "<span class ='".$fourthStyle."'>".$row[$fourthAtt]."</span> ";
-      $fifth = "<span class ='".$fifthStyle."'>".$row[$fifthAtt]."</span> ";
-      $sixth = "<span class ='".$sixthStyle."'>".$row[$sixthAtt]."</span> ";
-      $seventh = "<span class ='".$seventhStyle."'>".$row[$seventhAtt]."</span> ";
-      $eigth = "<span class ='".$eigthStyle."'>".$row[$eigthAtt]."</span> ";
+      $first = "";
+      $second = "";
+      $third = "";
+      $fourth = "";
+      $fifth = "";
+      $sixth = "";
+      $seventh = "";
+      $eigth = "";
+
+      if(!empty($firstAtt)){
+        $first = "<span class ='".$firstStyle."'>".$row[$firstAtt]."</span> ";
+      }
+
+      if(!empty($secondAtt)){
+        $second = "<span class ='".$secondStyle."'>".$row[$secondAtt]."</span> ";
+      }
+      if(!empty($thirdAtt)){
+        $third = "<span class ='".$thirdStyle."'>".$row[$thirdAtt]."</span> ";
+      }
+      if(!empty($fourthAtt)){
+        $fourth = "<span class ='".$fourthStyle."'>".$row[$fourthAtt]."</span> ";
+      }
+      if(!empty($fifthAtt)){
+        $fifth = "<span class ='".$fifthStyle."'>".$row[$fifthAtt]."</span> ";
+      }
+      if(!empty($sixthAtt)){
+        $sixth = "<span class ='".$sixthStyle."'>".$row[$sixthAtt]."</span> ";
+      }
+      if(!empty($seventhAtt)){
+        $seventh = "<span class ='".$seventhStyle."'>".$row[$seventhAtt]."</span> ";
+      }
+      if(!empty($eigthAtt)){
+        $eigth = "<span class ='".$eigthStyle."'>".$row[$eigthAtt]."</span>";
+      }
 
       //all styles are applied, now apply the seperators.
       $returnTemplate[] = $first.$firstSep.$second.$secondSep.$third.$thirdSep.$fourth.$fourthSep.$fifth.$fifthSep.$sixth.$sixthSep.$seventh.$seventhSep.$eigth.$eigthSep;

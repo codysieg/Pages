@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$database = "pages";
+$database = "c_branch";
 $user = "root";
 $pass = "";
 $connection = mysqli_connect($host, $user, $pass, $database) or die("Unable to connect.");
