@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
@@ -6,6 +7,8 @@
 -- Generation Time: Apr 06, 2017 at 08:17 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
+
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +20,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+
 -- Database: `Pages`
+
 --
 
 -- --------------------------------------------------------
@@ -80,6 +85,7 @@ INSERT INTO `attributes` (`attID`, `attName`) VALUES
 (28, 'genre'),
 (31, 'copies');
 
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +108,7 @@ CREATE TABLE `books` (
 -- Dumping data for table `books`
 --
 
+
 INSERT INTO `books` (`ISBN`, `title`, `authorFirst`, `authorLast`, `pcity`, `publisher`, `pdate`, `genre`, `copies`) VALUES
 ('0026515628', 'Glencoe Health, A Guide to Wellness, Student Edition', 'Hill', 'McGraw', 'Atlanta', 'McGraw-Hill Education', '2005', 'Education', '6'),
 ('0670032735', 'The Book on Bush: How George W. (Mis)leads America', 'Eric', 'Alterman', 'New York', 'The New Yorker', '2004', 'Politics', '3'),
@@ -123,6 +130,7 @@ CREATE TABLE `collections` (
   `cid` int(11) NOT NULL,
   `ISBN` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -185,6 +193,21 @@ INSERT INTO `copies` (`ISBN`, `copyID`, `notes`, `condtn`) VALUES
 ('281927401', 1, '', ''),
 ('281927401', 2, '', ''),
 ('9780007308187', 1, '', '');
+
+--
+-- Dumping data for table `collections`
+--
+
+INSERT INTO `collections` (`cid`, `ISBN`) VALUES
+(8, '0026515628'),
+(7, '0670032735'),
+(6, '0747532699'),
+(5, '0747538492'),
+(4, '0747542155'),
+(3, '0802042031'),
+(2, '1292018194'),
+(1, '9780007308187');
+
 
 -- --------------------------------------------------------
 
@@ -258,6 +281,7 @@ ALTER TABLE `collections`
   ADD KEY `ISBN` (`ISBN`);
 
 --
+
 -- Indexes for table `copies`
 --
 ALTER TABLE `copies`
@@ -277,7 +301,9 @@ ALTER TABLE `templates`
 -- AUTO_INCREMENT for table `attributes`
 --
 ALTER TABLE `attributes`
+
   MODIFY `attID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT for table `templates`
 --
@@ -293,11 +319,13 @@ ALTER TABLE `templates`
 ALTER TABLE `collections`
   ADD CONSTRAINT `collections_ibfk_1` FOREIGN KEY (`ISBN`) REFERENCES `books` (`ISBN`);
 
+
 --
 -- Constraints for table `copies`
 --
 ALTER TABLE `copies`
   ADD CONSTRAINT `copies_ibfk_1` FOREIGN KEY (`ISBN`) REFERENCES `books` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

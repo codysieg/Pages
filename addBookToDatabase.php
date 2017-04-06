@@ -29,6 +29,7 @@
                   $retval3 = mysqli_query($connection, $query3);
                   header("Location:index.php");
 
+
       }
       $sql = "SELECT copies FROM books WHERE ISBN = '$key';";
       $retval4 = mysqli_query($connection, $sql);
