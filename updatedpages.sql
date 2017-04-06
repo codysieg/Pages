@@ -1,11 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 06, 2017 at 01:27 AM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.5.38
+-- Host: localhost
+-- Generation Time: Apr 06, 2017 at 08:17 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
+
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +20,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pages`
+
+-- Database: `Pages`
+
 --
 
 -- --------------------------------------------------------
@@ -77,7 +82,9 @@ INSERT INTO `attributes` (`attID`, `attName`) VALUES
 (25, 'pcity'),
 (26, 'publisher'),
 (27, 'pdate'),
-(28, 'genre');
+(28, 'genre'),
+(31, 'copies');
+
 
 -- --------------------------------------------------------
 
@@ -93,23 +100,25 @@ CREATE TABLE `books` (
   `pcity` varchar(20) NOT NULL,
   `publisher` varchar(50) DEFAULT NULL,
   `pdate` varchar(15) DEFAULT NULL,
-  `genre` varchar(15) DEFAULT NULL
+  `genre` varchar(15) DEFAULT NULL,
+  `copies` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`ISBN`, `title`, `authorFirst`, `authorLast`, `pcity`, `publisher`, `pdate`, `genre`) VALUES
-('0026515628', 'Glencoe Health, A Guide to Wellness, Student Edition', 'Hill', 'McGraw', 'Atlanta', 'McGraw-Hill Education', '2005', 'Education'),
-('0670032735', 'The Book on Bush: How George W. (Mis)leads America', 'Eric', 'Alterman', 'New York', 'The New Yorker', '2004', 'Politics'),
-('0747532699', 'Harry Potter and the Philosopher''s Stone', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1997', 'Fantasy'),
-('0747538492', 'Harry Potter and the Chamber of Secrets', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1998', 'Fantasy'),
-('0747542155', 'Harry Potter and the Prisoner of Azkaban', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1999', 'Fantasy'),
-('0802042031', 'Concise Historical Atlas of Canada', 'William', 'Dean', 'Toronto', 'University of Toronto Press', '1998', 'History'),
-('1292018194', 'Java: How to Program : Early Objects', 'Paul', 'Deitel', 'New York City', 'Pearson Education', '2014', 'Education'),
-('281927401', 'Seven Stones to Stand or Fall', 'Diana', 'Gabaldon', 'Toronto', 'Toronto Publishing', '2017', 'Fiction'),
-('9780007308187', 'Practical Fly Fishing', 'Larry', 'St John', 'New York', 'MacMillan Company', '1920', 'Sports');
+
+INSERT INTO `books` (`ISBN`, `title`, `authorFirst`, `authorLast`, `pcity`, `publisher`, `pdate`, `genre`, `copies`) VALUES
+('0026515628', 'Glencoe Health, A Guide to Wellness, Student Edition', 'Hill', 'McGraw', 'Atlanta', 'McGraw-Hill Education', '2005', 'Education', '6'),
+('0670032735', 'The Book on Bush: How George W. (Mis)leads America', 'Eric', 'Alterman', 'New York', 'The New Yorker', '2004', 'Politics', '3'),
+('0747532699', 'Harry Potter and the Philosopher\'s Stone', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1997', 'Fantasy', '5'),
+('0747538492', 'Harry Potter and the Chamber of Secrets', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1998', 'Fantasy', '1'),
+('0747542155', 'Harry Potter and the Prisoner of Azkaban', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1999', 'Fantasy', '2'),
+('0802042031', 'Concise Historical Atlas of Canada', 'William', 'Dean', 'Toronto', 'University of Toronto Press', '1998', 'History', '8'),
+('1292018194', 'Java: How to Program : Early Objects', 'Paul', 'Deitel', 'New York City', 'Pearson Education', '2014', 'Education', '15'),
+('281927401', 'Seven Stones to Stand or Fall', 'Diana', 'Gabaldon', 'Toronto', 'Toronto Publishing', '2017', 'Fiction', '2'),
+('9780007308187', 'Practical Fly Fishing', 'Larry', 'St John', 'New York', 'MacMillan Company', '1920', 'Sports', '1');
 
 -- --------------------------------------------------------
 
@@ -121,6 +130,69 @@ CREATE TABLE `collections` (
   `cid` int(11) NOT NULL,
   `ISBN` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `copies`
+--
+
+CREATE TABLE `copies` (
+  `ISBN` varchar(30) NOT NULL,
+  `copyID` int(20) NOT NULL,
+  `notes` varchar(255) NOT NULL,
+  `condtn` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `copies`
+--
+
+INSERT INTO `copies` (`ISBN`, `copyID`, `notes`, `condtn`) VALUES
+('0026515628', 1, '', ''),
+('0026515628', 2, '', ''),
+('0026515628', 3, '', ''),
+('0026515628', 4, '', ''),
+('0026515628', 5, '', ''),
+('0026515628', 6, '', ''),
+('0670032735', 1, '', ''),
+('0670032735', 2, '', ''),
+('0670032735', 3, '', ''),
+('0747532699', 1, '', ''),
+('0747532699', 2, '', ''),
+('0747532699', 3, '', ''),
+('0747532699', 4, '', ''),
+('0747532699', 5, '', ''),
+('0747538492', 1, '', ''),
+('0747542155', 1, '', ''),
+('0747542155', 2, '', ''),
+('0802042031', 1, '', ''),
+('0802042031', 2, '', ''),
+('0802042031', 3, '', ''),
+('0802042031', 4, '', ''),
+('0802042031', 5, '', ''),
+('0802042031', 6, '', ''),
+('0802042031', 7, '', ''),
+('0802042031', 8, '', ''),
+('1292018194', 1, '', ''),
+('1292018194', 2, '', ''),
+('1292018194', 3, '', ''),
+('1292018194', 4, '', ''),
+('1292018194', 5, '', ''),
+('1292018194', 6, '', ''),
+('1292018194', 7, '', ''),
+('1292018194', 8, '', ''),
+('1292018194', 9, '', ''),
+('1292018194', 10, '', ''),
+('1292018194', 11, '', ''),
+('1292018194', 12, '', ''),
+('1292018194', 13, '', ''),
+('1292018194', 14, '', ''),
+('1292018194', 15, '', ''),
+('281927401', 1, '', ''),
+('281927401', 2, '', ''),
+('9780007308187', 1, '', '');
 
 --
 -- Dumping data for table `collections`
@@ -135,6 +207,7 @@ INSERT INTO `collections` (`cid`, `ISBN`) VALUES
 (3, '0802042031'),
 (2, '1292018194'),
 (1, '9780007308187');
+
 
 -- --------------------------------------------------------
 
@@ -208,6 +281,13 @@ ALTER TABLE `collections`
   ADD KEY `ISBN` (`ISBN`);
 
 --
+
+-- Indexes for table `copies`
+--
+ALTER TABLE `copies`
+  ADD PRIMARY KEY (`ISBN`,`copyID`);
+
+--
 -- Indexes for table `templates`
 --
 ALTER TABLE `templates`
@@ -221,7 +301,9 @@ ALTER TABLE `templates`
 -- AUTO_INCREMENT for table `attributes`
 --
 ALTER TABLE `attributes`
-  MODIFY `attID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+  MODIFY `attID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT for table `templates`
 --
@@ -236,6 +318,14 @@ ALTER TABLE `templates`
 --
 ALTER TABLE `collections`
   ADD CONSTRAINT `collections_ibfk_1` FOREIGN KEY (`ISBN`) REFERENCES `books` (`ISBN`);
+
+
+--
+-- Constraints for table `copies`
+--
+ALTER TABLE `copies`
+  ADD CONSTRAINT `copies_ibfk_1` FOREIGN KEY (`ISBN`) REFERENCES `books` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

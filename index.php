@@ -109,7 +109,7 @@
       <ul class="nav navbar-nav">
         <li><a href="collections.php">My Collection</a></li>
         <li><a href="templates.php">Templates</a></li>
-        <li><a class = "logoutButton" href="logout.php">Log Out</a></li>
+        <li><a class = "logoutButton" href="login.php">Log Out</a></li>
       </ul>
     </div>
   </div>
@@ -225,7 +225,8 @@
         $result = mysqli_query($connection, $sql);
         while($row = mysqli_fetch_assoc($result)){
           echo "<tr>";
-          echo "<td>".$row['ISBN']."</td>";
+          echo "<td><a href='copies.php?id=".$row['ISBN']."' id = 'isbn_link'>".$row['ISBN']."</a></td>";
+          //echo "<td>".$row['ISBN']."</td>";
           echo "<td>".$row['title']."</td>";
           echo "<td>".$row['authorLast'].", ".$row['authorFirst']."</td>";
           echo "<td>".$row['pcity']."</td>";
