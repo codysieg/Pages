@@ -15,7 +15,21 @@
 
 <html>
   <head>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="jquery.wordexport.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+    <style>
+    .italics{
+      display: inline;
+      font-style: italic;
+    }
+
+    .bold{
+      display: inline;
+      font-weight: bold;
+    }
+    </style>
   </head>
     <body>
 
@@ -23,7 +37,7 @@
       <?php
       $return_template = $_SESSION['return_template'];
       foreach($return_template as $row){
-        echo "<p align='center' style='font-size: 20px'>";
+        echo "<p align='center'>";
         echo $row;
         echo "</p>";
       }

@@ -17,12 +17,16 @@
   <style>
 
   .italics{
+    overflow: hidden;
     white-space: nowrap;
+    display: inline;
     font-style: italic;
   }
 
   .bold{
+    overflow: hidden;
     white-space: nowrap;
+    display: inline;
     font-weight: bold;
   }
 
@@ -313,8 +317,10 @@ if(!isset($_SESSION['username'])){
     ?>
   </div>
 
-  <div class="text-center" >
-    <a href="./exportWord.php" class="btn btn-info">Export to Word.doc</a>
+  <div class="text-center">
+    <?php
+      echo "<a href='./exportWord.php' class='btn btn-info'>Export to Word.doc</a>";
+    ?>
   </div>
 
 </body>

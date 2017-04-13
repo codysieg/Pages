@@ -8,7 +8,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.italics{
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline;
+  font-style: italic;
+}
 
+.bold{
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline;
+  font-weight: bold;
+}
+
+</style>
 </head>
 <body>
 <?php
@@ -121,26 +136,26 @@
       $eigth = "";
 
       if(!empty($firstAtt)){
-        $first = "<span class ='".$firstStyle."'>".$row[$firstAtt]."</span> ";
+        $first = "<span class ='".$firstStyle."'>".$row[$firstAtt]."</span>";
       }
 
       if(!empty($secondAtt)){
-        $second = "<span class ='".$secondStyle."'>".$row[$secondAtt]."</span> ";
+        $second = "<span class ='".$secondStyle."'>".$row[$secondAtt]."</span>";
       }
       if(!empty($thirdAtt)){
-        $third = "<span class ='".$thirdStyle."'>".$row[$thirdAtt]."</span> ";
+        $third = "<span class ='".$thirdStyle."'>".$row[$thirdAtt]."</span>";
       }
       if(!empty($fourthAtt)){
-        $fourth = "<span class ='".$fourthStyle."'>".$row[$fourthAtt]."</span> ";
+        $fourth = "<span class ='".$fourthStyle."'>".$row[$fourthAtt]."</span>";
       }
       if(!empty($fifthAtt)){
-        $fifth = "<span class ='".$fifthStyle."'>".$row[$fifthAtt]."</span> ";
+        $fifth = "<span class ='".$fifthStyle."'>".$row[$fifthAtt]."</span>";
       }
       if(!empty($sixthAtt)){
-        $sixth = "<span class ='".$sixthStyle."'>".$row[$sixthAtt]."</span> ";
+        $sixth = "<span class ='".$sixthStyle."'>".$row[$sixthAtt]."</span>";
       }
       if(!empty($seventhAtt)){
-        $seventh = "<span class ='".$seventhStyle."'>".$row[$seventhAtt]."</span> ";
+        $seventh = "<span class ='".$seventhStyle."'>".$row[$seventhAtt]."</span>";
       }
       if(!empty($eigthAtt)){
         $eigth = "<span class ='".$eigthStyle."'>".$row[$eigthAtt]."</span>";
@@ -149,68 +164,6 @@
       //all styles are applied, now apply the seperators.
       $returnTemplate[] = $first.$firstSep.$second.$secondSep.$third.$thirdSep.$fourth.$fourthSep.$fifth.$fifthSep.$sixth.$sixthSep.$seventh.$seventhSep.$eigth.$eigthSep;
     }
-
-
-
-    //old code
-    /*
-    //check to see which one it is.
-    if($website_string == "MLA"){
-      //do mla stuff
-      while($row = mysqli_fetch_array($retval)){
-        $returnTemplate[] = $row['authorLast'].", ".$row['authorFirst'].".<i> ".$row['title']."</i>. ".$row['publisher'].", ".$row['pdate'].". Print.";
-      }
-
-    }
-    elseif($website_string == "APA"){
-      //do apa stuff
-      while($row = mysqli_fetch_array($retval)){
-        $returnTemplate[] = $row['authorLast'].", ".substr($row['authorFirst'], 0, 1).". (".$row['pdate'].") ".$row['title']." ".$row['pcity'].": ".$row['publisher'].".";
-      }
-
-    }
-    elseif($website_string == "Chicago/Turabian"){
-      //do chicago stuff
-      while($row = mysqli_fetch_array($retval)){
-        $returnTemplate[] = $row['authorLast'].", ".$row['authorFirst'].". <i>".$row['title']."</i>. ".$row['pcity'].": ".$row['publisher'].", ".$row['pdate'].".";
-      }
-
-    }
-
-    elseif($website_string == "Custom"){
-        //get template from database
-        $sql = "SELECT * FROM templates WHERE tname = '$website_string';";
-        $result = mysqli_query($connection, $sql);
-
-        $firstAtt;
-        $secondAtt;
-        $thirdAtt;
-        $fourthAtt;
-        $fifthAtt;
-        $sixthAtt;
-        $seventhAtt;
-        $eigthAtt;
-
-        while($row = mysqli_fetch_array($result)){
-          $firstAtt = $row['firstAtt'];
-          $secondAtt = $row['secondAtt'];
-          $thirdAtt = $row['thirdAtt'];
-          $fourthAtt = $row['fourthAtt'];
-          $fifthAtt = $row['fifthAtt'];
-          $sixthAtt = $row['sixthAtt'];
-          $seventhAtt = $row['seventhAtt'];
-          $eigthAtt = $row['eigthAtt'];
-        }
-        //attributes are stored now.
-        while($row = mysqli_fetch_array($retval)){
-          $returnTemplate[] = $row[$firstAtt].", ".$row[$secondAtt].", ".$row[$thirdAtt].", ".$row[$fourthAtt].", ".$row[$fifthAtt].", ".$row[$sixthAtt].", ".$row[$seventhAtt].", ".$row[$eigthAtt];
-
-
-        }
-    }
-
-    */
-
 
     // now return the template selected and print it out.
     //save as a session variable

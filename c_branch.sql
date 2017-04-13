@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2017 at 11:55 PM
+-- Generation Time: Apr 14, 2017 at 01:28 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.5.38
 
@@ -78,7 +78,8 @@ INSERT INTO `attributes` (`attID`, `attName`) VALUES
 (26, 'publisher'),
 (27, 'pdate'),
 (28, 'genre'),
-(31, 'copies');
+(31, 'copies'),
+(34, 'secondaryTitle');
 
 -- --------------------------------------------------------
 
@@ -95,31 +96,32 @@ CREATE TABLE `books` (
   `publisher` varchar(50) DEFAULT NULL,
   `pdate` varchar(15) DEFAULT NULL,
   `genre` varchar(15) DEFAULT NULL,
-  `copies` varchar(30) DEFAULT NULL
+  `copies` varchar(30) DEFAULT NULL,
+  `secondaryTitle` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`ISBN`, `title`, `authorFirst`, `authorLast`, `pcity`, `publisher`, `pdate`, `genre`, `copies`) VALUES
-('0002315637', 'Nemesis', 'Agatha', 'Christie', 'Southhampton', 'The Crime Club', '1982', 'Crime', '1'),
-('0026515628', 'Glencoe Health, A Guide to Wellness, Student Edition', 'Hill', 'McGraw', 'Atlanta', 'McGraw-Hill Education', '2005', 'Education', '6'),
-('0316358436', 'Prisoners of the Sun', 'Jim', 'John', 'Cambridge', 'Books for Young Readers', '1975', 'Comics', '1'),
-('0571142389', 'The Building of Castle-Howard', 'Charles', 'Smith', 'London', 'Faber & Faber', '1990', 'Science', '1'),
-('0670032735', 'The Book on Bush: How George W. (Mis)leads America', 'Eric', 'Alterman', 'New York', 'The New Yorker', '2004', 'Politics', '3'),
-('0747532699', 'Harry Potter and the Philosopher''s Stone', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1997', 'Fantasy', '5'),
-('0747538492', 'Harry Potter and the Chamber of Secrets', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1998', 'Fantasy', '1'),
-('0747542155', 'Harry Potter and the Prisoner of Azkaban', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1999', 'Fantasy', '2'),
-('0802042031', 'Concise Historical Atlas of Canada', 'William', 'Dean', 'Toronto', 'University of Toronto Press', '1998', 'History', '8'),
-('0882141120', 'Individuation in Fairy Tales', 'Franz', 'Von', 'Dallas', 'Spring Publications', '1982', 'Fantasy', '2'),
-('0971880131', 'Too Far', 'Rich', 'Chipero', 'Toronto', 'Outside Reading', '1995', 'Fantasy', '1'),
-('1137280107', 'Beneath the Surface: Killer Whales', 'John', 'Hargrove', 'Toronto', 'Palgrave Macmillian', '2015', 'Education', '1'),
-('1292018194', 'Java: How to Program : Early Objects', 'Paul', 'Deitel', 'New York City', 'Pearson Education', '2014', 'Education', '15'),
-('1563890887', 'Tell Me, Dark', 'John', 'Reiber', 'Cambridge', 'Vertigo', '1998', 'Comics', '1'),
-('1565121791', 'A Blessing on the Moon', 'Joseph', 'Skibell', 'Carolina', 'Algonquin Books', '1997', 'Fantasy', '1'),
-('281927401', 'Seven Stones to Stand or Fall', 'Diana', 'Gabaldon', 'Toronto', 'Toronto Publishing', '2017', 'Fiction', '2'),
-('9780007308187', 'Practical Fly Fishing', 'Larry', 'St John', 'New York', 'MacMillan Company', '1920', 'Sports', '1');
+INSERT INTO `books` (`ISBN`, `title`, `authorFirst`, `authorLast`, `pcity`, `publisher`, `pdate`, `genre`, `copies`, `secondaryTitle`) VALUES
+('0002315637', 'Nemesis', 'Agatha', 'Christie', 'Southhampton', 'The Crime Club', '1982', 'Crime', '1', NULL),
+('0026515628', 'Glencoe Health, A Guide to Wellness, Student Edition', 'Hill', 'McGraw', 'Atlanta', 'McGraw-Hill Education', '2005', 'Education', '6', NULL),
+('0316358436', 'Prisoners of the Sun', 'Jim', 'John', 'Cambridge', 'Books for Young Readers', '1975', 'Comics', '1', NULL),
+('0571142389', 'The Building of Castle-Howard', 'Charles', 'Smith', 'London', 'Faber & Faber', '1990', 'Science', '1', NULL),
+('0670032735', 'The Book on Bush: How George W. (Mis)leads America', 'Eric', 'Alterman', 'New York', 'The New Yorker', '2004', 'Politics', '3', NULL),
+('0747532699', 'Harry Potter and the Philosopher''s Stone', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1997', 'Fantasy', '5', NULL),
+('0747538492', 'Harry Potter and the Chamber of Secrets', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1998', 'Fantasy', '1', NULL),
+('0747542155', 'Harry Potter and the Prisoner of Azkaban', 'Joanne', 'Rowling', 'Bloomsbury', 'Bloomsbury Publishing', '1999', 'Fantasy', '2', NULL),
+('0802042031', 'Concise Historical Atlas of Canada', 'William', 'Dean', 'Toronto', 'University of Toronto Press', '1998', 'History', '8', NULL),
+('0882141120', 'Individuation in Fairy Tales', 'Franz', 'Von', 'Dallas', 'Spring Publications', '1982', 'Fantasy', '2', NULL),
+('0971880131', 'Too Far', 'Rich', 'Chipero', 'Toronto', 'Outside Reading', '1995', 'Fantasy', '1', NULL),
+('1137280107', 'Beneath the Surface: Killer Whales', 'John', 'Hargrove', 'Toronto', 'Palgrave Macmillian', '2015', 'Education', '1', NULL),
+('1292018194', 'Java: How to Program : Early Objects', 'Paul', 'Deitel', 'New York City', 'Pearson Education', '2014', 'Education', '15', NULL),
+('1563890887', 'Tell Me, Dark', 'John', 'Reiber', 'Cambridge', 'Vertigo', '1998', 'Comics', '1', NULL),
+('1565121791', 'A Blessing on the Moon', 'Joseph', 'Skibell', 'Carolina', 'Algonquin Books', '1997', 'Fantasy', '1', NULL),
+('281927401', 'Seven Stones to Stand or Fall', 'Diana', 'Gabaldon', 'Toronto', 'Toronto Publishing', '2017', 'Fiction', '2', NULL),
+('9780007308187', 'Practical Fly Fishing', 'Larry', 'St John', 'New York', 'MacMillan Company', '1920', 'Sports', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,7 @@ CREATE TABLE `copies` (
 --
 
 INSERT INTO `copies` (`ISBN`, `copyID`, `notes`, `condtn`) VALUES
-('0002315637', 1, '', ''),
+('0002315637', 1, 'Signed by Dr. James Yu.', 'Mint Condition.'),
 ('0026515628', 1, '', ''),
 ('0026515628', 2, '', ''),
 ('0026515628', 3, '', 'Good Condition.'),
@@ -174,7 +176,7 @@ INSERT INTO `copies` (`ISBN`, `copyID`, `notes`, `condtn`) VALUES
 ('0670032735', 1, '', 'Good condition'),
 ('0670032735', 2, '', ''),
 ('0670032735', 3, '', ''),
-('0747532699', 1, '', ''),
+('0747532699', 1, 'Signed by James Yu.', 'Mint.'),
 ('0747532699', 2, '', ''),
 ('0747532699', 3, '', ''),
 ('0747532699', 4, '', ''),
@@ -255,7 +257,10 @@ CREATE TABLE `templates` (
 --
 
 INSERT INTO `templates` (`tid`, `tname`, `firstAtt`, `firstStyle`, `firstSep`, `secondAtt`, `secondStyle`, `secondSep`, `thirdAtt`, `thirdStyle`, `thirdSep`, `fourthAtt`, `fourthStyle`, `fourthSep`, `fifthAtt`, `fifthStyle`, `fifthSep`, `sixthAtt`, `sixthStyle`, `sixthSep`, `seventhAtt`, `seventhStyle`, `seventhSep`, `eigthAtt`, `eigthStyle`, `eigthSep`) VALUES
-(2, 'MLA', 'authorLast', '', '', 'authorFirst', '', '', 'title', 'italics', '', 'publisher', '', '', 'pdate', '', '', '', '', '', '', '', '', '', '', '');
+(4, 'APA', 'authorLast', '', ', ', 'authorFirst', '', '. ', 'pdate', '', ' ', 'title', 'italics', '. ', 'pcity', '', ', ', 'publisher', '', '', ' ', '', ' ', ' ', '', ' '),
+(7, 'MLA', 'authorLast', '', ', ', 'authorFirst', '', '. ', 'title', 'italics', '. ', 'pcity', '', ' ', 'publisher', '', ', ', 'pdate', '', '', ' ', '', ' ', ' ', '', ' '),
+(8, 'Chicago/Turabian Style', 'authorLast', '', ', ', 'authorFirst', '', '. ', 'title', 'italics', '. ', 'pcity', '', '. ', 'pdate', '', ' ', ' ', '', '', ' ', '', ' ', ' ', '', ' '),
+(9, 'Custom', 'ISBN', 'italics', ', ', 'publisher', 'bold', '. ', 'authorFirst', '', ' ', 'authorLast', 'italics', '. ', 'copies', '', '. ', ' ', '', '', ' ', '', ' ', ' ', '', ' ');
 
 --
 -- Indexes for dumped tables
@@ -306,12 +311,12 @@ ALTER TABLE `templates`
 -- AUTO_INCREMENT for table `attributes`
 --
 ALTER TABLE `attributes`
-  MODIFY `attID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `attID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `templates`
 --
 ALTER TABLE `templates`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --

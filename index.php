@@ -171,14 +171,15 @@
               </div>
               <div class="modal-body">
                 <form action = "searchBookDatabase.php" method="POST" id="mainForm"/>
-                <input type="text" name ="ISBN" placeholder="ISBN : "/><br/><br/>
-                <input type="text" name ="title" placeholder="Title of Book : "/><br/><br/>
-                <input type="text" name ="authorFirst" placeholder="Author (First) : "/><br/><br/>
-                <input type="text" name ="authorLast" placeholder="Author (Last) : "/><br/><br/>
-                <input type="text" name ="pcity" placeholder="Publishing City : "/><br/><br/>
-                <input type="text" name ="publisher" placeholder="Publisher : "/><br/><br/>
-                <input type="text" name ="pdate" placeholder="Publisher Date : "/><br/><br/>
-                <input type="text" name ="genre" placeholder="Genre : "/><br/><br/>
+                <?php
+                $query = "SELECT * FROM attributes; ";
+                $retval = mysqli_query($connection, $query);
+                while ($row = mysqli_fetch_array($retval)){
+                  echo '<input type="text" id="'.$row["attName"].'" name="'.$row["attName"].'" placeholder="'.$row["attName"].'"/>';
+                  echo "<br/><br/>";
+
+                }
+                  ?>
                 <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
                 </form>
               </div>
@@ -189,7 +190,41 @@
             </div>
           </div>
 
-          <a href="addAttribute.php"><input type="submit" value="Add Attribute" class="btn btn-warning btn-lg"/></a>
+          <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" id ="close" data-target="#myModal3">Add Attribute</button>
+          <div id="myModal3" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+          <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Attributes: </h4>
+              </div>
+              <div class="modal-body">
+                <h4 class="modal-title">Add Attribute </h4>
+                <form action = "addAttributeHandle.php" method="POST" id="mainForm">
+                  <input type="text" name="addAtt" id="addAtt" placeholder="Attribute Name">
+                 <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
+               </form>
+               <hr>
+
+
+
+
+
+               <p class="form-title">
+                   <h4 class="modal-title">Remove Attribute </h4>
+               <form action = "removeAttributeHandle.php" method="POST" id="mainForm">
+               <input type="text" name="removeAtt" id="removeAtt" placeholder="Attribute Name">
+               <input type="submit" value="Submit" class="btn btn-success btn-sm"/>
+               </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            </div>
+          </div>
         </div>
 
           <hr>

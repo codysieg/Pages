@@ -102,6 +102,14 @@
 
 
               }
+
+              echo "<tr>";
+              echo "<td colspan='8'>";
+              echo "<form action ='removeAllFromCollections.php' method='post'>";
+              echo "<input type = 'submit' value='Remove All' onclick = 'return confirmDelete()' class='pull-right btn btn-danger'>";
+              echo "</form>";
+              echo "</td>";
+              echo "</tr>";
                ?>
 
                   <td><a href="index.php" class="btn btn-primary">Continue Searching</a></td>
